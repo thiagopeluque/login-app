@@ -35,11 +35,7 @@ export default function Register() {
 
   /* Novamente declaramos as funções do React-Hook-Forms e passamos além delas, os valores
   inciais dos inputs. Sendo assim eles já aparecem preenchidos só necessitando alterar o necessário */
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: loadValues,
   });
 
@@ -188,7 +184,7 @@ export default function Register() {
           render={({ field: { onChange, onBlur, value } }) => (
             <RadioButton
               data={sexoRadio}
-              initial={value == "Masculino" ? 2 : 1}
+              initial={value == 'Masculino' ? 1 : 2}
               onBlur={onBlur}
               selectedBtn={(value) => onChange(value)}
             />
