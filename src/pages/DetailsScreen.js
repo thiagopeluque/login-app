@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from "react-native";
 
+import colors from '../../assets/colors/colors';
 import User from "../services/users";
 
 export default function Register() {
@@ -55,7 +56,7 @@ export default function Register() {
     <ScrollView>
       <SafeAreaView style={styles.container}>
 
-        <Text>Nome Completo</Text>
+        <Text style={styles.title}>Nome Completo</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -74,7 +75,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Email</Text>
+        <Text style={styles.title}>Email</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -93,7 +94,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Telefone</Text>
+        <Text style={styles.title}>Telefone</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -112,7 +113,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Endereço</Text>
+        <Text style={styles.title}>Endereço</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -131,7 +132,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Cidade</Text>
+        <Text style={styles.title}>Cidade</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -150,7 +151,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Data de Nascimento</Text>
+        <Text style={styles.title}>Data de Nascimento</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -169,7 +170,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Sexo</Text>
+        <Text style={styles.title}>Sexo</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -188,7 +189,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>CPF</Text>
+        <Text style={styles.title}>CPF</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -207,7 +208,7 @@ export default function Register() {
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 
-        <Text>Usuário</Text>
+        <Text style={styles.title}>Usuário</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -241,19 +242,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
     width: "100%",
-    marginTop: 10,
-    marginBottom: 10,
+    padding: 20
+  },
+  title:{
+    marginTop: 1,
+    paddingLeft: 5,
+    fontSize: 14,
+    fontWeight: "bold",
+    width: '100%'
   },
   textInput: {
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "#C9C9C9",
     borderRadius: 5,
-    padding: 10,
-    backgroundColor: "#FFFFFF",
-    width: "80%",
-    margin: 5,
+    paddingLeft: 5,
+    width: "100%",
+    marginBottom: 15,
   },
   inputError: {
     color: "red",
@@ -261,16 +266,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
     padding: 15,
     marginTop: 10,
-    backgroundColor: "#034694",
+    backgroundColor: colors.button,
   },
   textButton: {
-    color: "#FFFFFF",
+    color: colors.textButton,
     fontWeight: "bold",
   },
 });

@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from "react-native";
 
+import colors from '../../assets/colors/colors';
 import User from "../services/users";
 
 export default function Register() {
@@ -33,7 +34,7 @@ export default function Register() {
     <ScrollView>
       <SafeAreaView style={styles.container}>
 
-        <Text>Nome Completo</Text>
+        <Text style={styles.title}>Nome Completo</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -48,9 +49,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.nome && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.nome && <Text style={styles.inputError}>Por favor, preencha com seu Nome</Text>}
 
-        <Text>Email</Text>
+        <Text style={styles.title}>Email</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -65,9 +66,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.email && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.email && <Text style={styles.inputError}>Preencha com seu email Principal</Text>}
 
-        <Text>Telefone</Text>
+        <Text style={styles.title}>Telefone</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -82,9 +83,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.telefone && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.telefone && <Text style={styles.inputError}>Preencha com um Telefone, preferimos um contato Whatsapp</Text>}
 
-        <Text>Endereço</Text>
+        <Text style={styles.title}>Endereço</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -99,9 +100,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.endereco && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.endereco && <Text style={styles.inputError}>Preencha seu Endereço Residencial</Text>}
         
-        <Text>Cidade</Text>
+        <Text style={styles.title}>Cidade</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -116,9 +117,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.cidade && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.cidade && <Text style={styles.inputError}>Preencha com a cidade que mora atualmente</Text>}
 
-        <Text>Data de Nascimento</Text>
+        <Text style={styles.title}>Data de Nascimento</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -133,9 +134,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.nascimento && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.nascimento && <Text style={styles.inputError}>Preencha com sua data de Nascimento</Text>}
 
-        <Text>Sexo</Text>
+        <Text style={styles.title}>Sexo</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -150,9 +151,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.sexo && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.sexo && <Text style={styles.inputError}>Preencha com seu sexo</Text>}
 
-        <Text>CPF</Text>
+        <Text style={styles.title}>CPF</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -167,9 +168,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.cpf && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.cpf && <Text style={styles.inputError}>Preencha o campo com seu numero de CPF</Text>}
         
-		  <Text>Usuário</Text>
+		  <Text style={styles.title}>Usuário</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -184,9 +185,9 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.usuario && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.usuario && <Text style={styles.inputError}>Preencha com o nome de usuário escolhido (sem espaços e em letras minúsculas)</Text>}
 		  
-		  <Text>Senha</Text>
+		  <Text style={styles.title}>Senha</Text>
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
@@ -202,7 +203,7 @@ export default function Register() {
           rules={{ required: true }}
           defaultValue=""
         />
-        {errors.password && <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>}
+        {errors.password && <Text style={styles.inputError}>Preencha com uma senha pessoal</Text>}
 
         <TouchableOpacity
           style={styles.button}
@@ -219,36 +220,41 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
     width: "100%",
-    marginTop: 10,
-    marginBottom: 10,
+    padding: 20
+  },
+  title:{
+    marginTop: 1,
+    paddingLeft: 5,
+    fontSize: 14,
+    fontWeight: "bold",
+    width: '100%'
   },
   textInput: {
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "#C9C9C9",
     borderRadius: 5,
-    padding: 10,
-    backgroundColor: "#FFFFFF",
-    width: "80%",
-    margin: 5,
+    paddingLeft: 5,
+    width: "100%",
+    marginBottom: 15,
   },
-  inputError:{
-	  color: 'red',
-	  fontSize: 12,
-	  marginBottom: 20,
+  inputError: {
+    color: colors.error,
+    fontSize: 12,
+    marginBottom: 20,
+    lineHeight: 15
   },
   button: {
-    width: "80%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 5,
     padding: 15,
     marginTop: 10,
-    backgroundColor: "#034694",
+    backgroundColor: colors.button,
   },
   textButton: {
-    color: "#FFFFFF",
+    color: colors.textButton,
     fontWeight: "bold",
   },
 });

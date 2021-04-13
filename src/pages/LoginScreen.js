@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import colors from '../../assets/colors/colors';
 import User from "../services/users";
 
 export default function App() {
@@ -33,8 +34,9 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
+      <Image source={require("../../assets/logo.png")} style={{ width: 150, height: 200 }} resizeMode="contain" />
+      
       <Text style={styles.title}> Área do Cliente </Text>
-
       <Controller
         control={control}
         render={({ field: { onChange, onBlur, value } }) => (
@@ -103,16 +105,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   textInput: {
-    borderWidth: 1,
-    borderColor: "#C9C9C9",
+    borderBottomWidth: 1,
+    borderColor: colors.inputBorder,
     borderRadius: 5,
     padding: 10,
-    backgroundColor: "#FFFFFF",
     width: "80%",
     margin: 5,
   },
   inputError: {
-    color: "red",
+    color: colors.error,
     fontSize: 12,
     marginBottom: 20,
   },
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 15,
     marginTop: 10,
-    backgroundColor: "#034694",
+    backgroundColor: colors.button
   },
   buttonRegister: {
     width: "80%",
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   textButtonLogin: {
-    color: "#FFFFFF",
+    color: colors.textButton,
     fontWeight: "bold",
   },
   textButtonRegister: {

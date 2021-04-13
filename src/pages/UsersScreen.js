@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, SafeAreaView, FlatList, TouchableOpacity, Alert, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import colors from '../../assets/colors/colors';
 import User from "../services/users";
 
 export default function Users() {
@@ -151,15 +152,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     borderRadius: 5,
+    borderLeftWidth: 4,
+    borderRightWidth: 4,
+    borderColor: colors.userBorder,
     padding: 15,
     marginTop: 10,
     backgroundColor: "#FFF",
   },
   buttonSearch: {
+    width: "20%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 5,
-    padding: 15,
+    fontWeight: "bold",
   },
   deleteButton: {
     flex: 1,
@@ -174,13 +178,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   searchInput: {
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "#C9C9C9",
     borderRadius: 5,
     padding: 10,
-    backgroundColor: "#FFFFFF",
     width: "70%",
     margin: 5,
+    color: '#000'
   },
   userName: {
     fontWeight: "bold",
@@ -196,10 +200,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 15,
     marginTop: 10,
-    backgroundColor: "#A5A5A5",
+    backgroundColor: colors.button,
   },
   textButtonRegister: {
-    color: "#000000",
+    color: colors.textButton,
     fontWeight: "bold",
   },
 });
