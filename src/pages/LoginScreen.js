@@ -1,34 +1,32 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import User from "../services/users";
 
 export default function App() {
+  
+  // declaração do useNavigation para "andar" pelas telas do App
   const navigation = useNavigation();
+  
+  // Usado o React-Hook-Forms.
+  // Declaração das funções do Hook, onde através delas fica mais fácil receber os dados digitados no Form,
+  // tratar os erros de digitação e utilização de Máscaras de preenchimento
+  const { control, handleSubmit, formState: { errors }} = useForm();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+  // Função de verificação do Login. Recebe os dados do Form. (usuário e senha) e envia o objeto para o Banco
+  // efetuar a consulta.
+  // Caso exista, através do React-Navigation o usuário é direcionado para tela de Usuários.
+  // Caso não exista, É retornado um Alert do Android para o usuário
   const handleVerifyLogin = async (data) => {
-    User.findByName(data)
+    User.login(data)
       .then(() => {
         navigation.navigate("Users");
       })
       .catch(() => {
         alert("Usuário Inválido");
-        console.log(data);
       });
   };
 

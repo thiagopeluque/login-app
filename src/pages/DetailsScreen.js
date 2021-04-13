@@ -1,23 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from "react-native";
 
 import User from "../services/users";
 
 export default function Register() {
+  // declaração do useNavigation para "andar" pelas telas do App
   const navigation = useNavigation();
+
+  // Aqui inicializamos o Route (do React-Navigation)
   const route = useRoute();
+  
+  // Recebemos os dados vindos da tela UsersScreens e armazenamos na variável "usuarios".
   const usuarios = route.params.usuario;
 
+  // Através da variável "usuarios" recebido acima, conseguimos preencher os campos do form.
+  // Com os campos preenchidos, podemos efetuar alterações nos dados dos usuários cadastrados
   const loadValues = {
     id: usuarios.id,
     nome: usuarios.nome,
@@ -32,16 +31,16 @@ export default function Register() {
     password: usuarios.password,
   };
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  // Novamente declaramos as funções do React-Hook-Forms e passamos além delas, os valores
+  // inciais dos inputs. Sendo assim eles já aparecem preenchidos só necessitando alterar o necessário
+  const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: loadValues,
   });
 
+  // Função para tratamento do Update dos dados. A função "handleUpdate" é chamado após clicar no
+  // botão ATUALIZAR no final do Form. Após a atualização, através do React-Navigation retornamos através
+  // tela de usuários cadastrados, já com a alteração aplicada.
   const handleUpdate = async (data) => {
-    // console.log(data);
     User.update(data)
     .then(() => {
       alert('Usuário Atualizado com Sucesso');
@@ -224,26 +223,6 @@ export default function Register() {
           defaultValue=""
         />
         {errors.usuario && (
-          <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
-        )}
-
-        <Text>Senha</Text>
-        <Controller
-          control={control}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={styles.textInput}
-              onBlur={onBlur}
-              onChangeText={(value) => onChange(value)}
-              value={value}
-              secureTextEntry={true}
-            />
-          )}
-          name="password"
-          rules={{ required: true }}
-          defaultValue=""
-        />
-        {errors.password && (
           <Text style={styles.inputError}>Campo obrigatório preenchimento</Text>
         )}
 

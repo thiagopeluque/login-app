@@ -1,26 +1,22 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from "react-native";
 
 import User from "../services/users";
 
 export default function Register() {
+  
+  // declaração do useNavigation para "andar" pelas telas do App
   const navigation = useNavigation();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
+  // Usado o React-Hook-Forms.
+  // Declaração das funções do Hook, onde através delas fica mais fácil receber os dados digitados no Form,
+  // tratar os erros de digitação e utilização de Máscaras de preenchimento
+  const { control, handleSubmit, formState: { errors } } = useForm();
+
+  // Função para tratar receber os dados do Form de Registro de Novos Usuário e enviar para o banco Inserir
+  // Após o sucesso da inclusão, retornamos para a tela de Usuários Cadastrados. Em caso de erro, recemos um Alert
   const handleRegister = async (data) => {
 	User.create(data)
 	.then(() => {
@@ -36,7 +32,6 @@ export default function Register() {
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-        <StatusBar style="dark" />
 
         <Text>Nome Completo</Text>
         <Controller

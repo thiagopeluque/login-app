@@ -2,7 +2,11 @@ import db from "./sqlite";
 
 db.transaction((tx) => {
   tx.executeSql(
+    // -----------------------------------------------------------------
+    // User somente para Testes (descomentar a linha abaixo e abrir o App)
+    // -----------------------------------------------------------------
     // "DROP TABLE users;"
+    // -----------------------------------------------------------------
     `CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT,
@@ -19,6 +23,9 @@ db.transaction((tx) => {
   );
 });
 
+// -----------------------------------------------------------------
+// Recebe os dados de um Objeto vindo do Form. e passa para o INSERT
+// -----------------------------------------------------------------
 const create = (obj) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -35,6 +42,9 @@ const create = (obj) => {
   });
 };
 
+// -----------------------------------------------------------------
+// Recebe um Objeto e atualiza os dados do Banco de Dados
+// -----------------------------------------------------------------
 const update = (obj) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -51,7 +61,10 @@ const update = (obj) => {
   });
 };
 
-const find = (id) => {
+// -----------------------------------------------------------------
+// Consulta o ID do usuário clicado e retorna os Dados para o Update
+// -----------------------------------------------------------------
+const findtoUpdate = (id) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
@@ -67,7 +80,29 @@ const find = (id) => {
   });
 };
 
-const findByName = (obj) => {
+// -----------------------------------------------------------------
+// Faz a busca no banco pelo 'NOME' passado no Input de Buscas
+// -----------------------------------------------------------------
+const findByName = (nome) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM users WHERE nome LIKE ?;",
+        [`%${nome}%`],
+        (_, { rows }) => {
+          if (rows.length > 0) resolve(rows._array);
+          else reject("Usuário não Encontrado");
+        },
+        (_, error) => reject(error)
+      );
+    });
+  });
+};
+
+// -----------------------------------------------------------------
+// Consulta Login. Se o usuário digitado está cadastrado no sistema
+// -----------------------------------------------------------------
+const login = (obj) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
@@ -83,6 +118,9 @@ const findByName = (obj) => {
   });
 };
 
+// -----------------------------------------------------------------
+// Consulta que Retona um Objeto com todos os usuários cadastrados
+// -----------------------------------------------------------------
 const all = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -96,6 +134,9 @@ const all = () => {
   });
 };
 
+// -----------------------------------------------------------------
+// Consulta que busca o ID do usuário selecionado para Exclusão
+// -----------------------------------------------------------------
 const remove = (id) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -111,11 +152,15 @@ const remove = (id) => {
   });
 };
 
+// -----------------------------------------------------------------
+// Export das funções criadas do Banco de Dados
+// -----------------------------------------------------------------
 export default {
   create,
   update,
-  find,
+  findtoUpdate,
   findByName,
   all,
+  login,
   remove,
 };
