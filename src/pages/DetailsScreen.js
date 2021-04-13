@@ -1,4 +1,5 @@
 import React from "react";
+import RadioButton from "radio-buttons-react-native";
 import { useForm, Controller } from "react-hook-form";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from "react-native";
@@ -12,9 +13,9 @@ export default function Register() {
 
   // Aqui inicializamos o Route (do React-Navigation)
   const route = useRoute();
-  
+
   // Recebemos os dados vindos da tela UsersScreens e armazenamos na variável "usuarios".
-  const usuarios = route.params.usuario;
+  const usuarios = route.params.usuario;    
 
   /* Através da variável "usuarios" recebido acima, conseguimos preencher os campos do form.
   Com os campos preenchidos, podemos efetuar alterações nos dados dos usuários cadastrados */
@@ -34,7 +35,11 @@ export default function Register() {
 
   /* Novamente declaramos as funções do React-Hook-Forms e passamos além delas, os valores
   inciais dos inputs. Sendo assim eles já aparecem preenchidos só necessitando alterar o necessário */
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: loadValues,
   });
 
@@ -42,20 +47,27 @@ export default function Register() {
   botão ATUALIZAR no final do Form. Após a atualização, através do React-Navigation retornamos através
   tela de usuários cadastrados, já com a alteração aplicada. */
   const handleUpdate = async (data) => {
-    User.update(data)
-    .then(() => {
-      alert('Usuário Atualizado com Sucesso');
+    console.log(data);
+    User.update(data).then(() => {
+      alert("Usuário Atualizado com Sucesso");
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Users' }],
+        routes: [{ name: "Users" }],
       });
-    })
+    });
   };
+
+  /*
+  Dados para o Input Sexo (usado um componente externo visto que o React Native não possui esse tipo de Input)
+  Apenas um Array contendo as informações que deverão aparecer no Radio Input
+  */
+  const sexoRadio = [
+    { label: "Masculino" }, { label: "Feminino" }
+  ];
 
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-
         <Text style={styles.title}>Nome Completo</Text>
         <Controller
           control={control}
@@ -174,11 +186,11 @@ export default function Register() {
         <Controller
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={styles.textInput}
+            <RadioButton
+              data={sexoRadio}
+              initial={value == "Masculino" ? 2 : 1}
               onBlur={onBlur}
-              onChangeText={(value) => onChange(value)}
-              value={value}
+              selectedBtn={(value) => onChange(value)}
             />
           )}
           name="sexo"

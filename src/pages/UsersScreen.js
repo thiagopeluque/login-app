@@ -116,6 +116,7 @@ export default function Users() {
                   {item.endereco} - {item.cidade}
                 </Text>
                 <Text style={styles.userAddress}>Email : {item.email}</Text>
+                <Text style={styles.userAddress}>Sexo : {item.sexo}</Text>
                 <Text style={styles.userAddress}>Usuário : {item.usuario}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleDelete(item.id)}>

@@ -31,7 +31,7 @@ const create = (obj) => {
     db.transaction((tx) => {
       tx.executeSql(
         "INSERT INTO users (nome, email, telefone, endereco, cidade, nascimento, sexo, cpf, usuario, password) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-        [obj.nome, obj.email, obj.telefone, obj.endereco, obj.cidade, obj.nascimento, obj.sexo, obj.cpf, obj.usuario, obj.password],
+        [obj.nome, obj.email, obj.telefone, obj.endereco, obj.cidade, obj.nascimento, obj.sexo.label, obj.cpf, obj.usuario, obj.password],
         (_, { rowsAffected, insertId }) => {
           if (rowsAffected > 0) resolve(insertId);
           else reject("Erro ao Inserir novo Usuário");
@@ -50,7 +50,7 @@ const update = (obj) => {
     db.transaction((tx) => {
       tx.executeSql(
         "UPDATE users SET nome=?, email=?, telefone=?, endereco=?, cidade=?, nascimento=?, sexo=?, cpf=?, usuario=?, password=? WHERE id=?;",
-        [obj.nome, obj.email, obj.telefone, obj.endereco, obj.cidade, obj.nascimento, obj.sexo, obj.cpf, obj.usuario, obj.password, obj.id],
+        [obj.nome, obj.email, obj.telefone, obj.endereco, obj.cidade, obj.nascimento, obj.sexo.label, obj.cpf, obj.usuario, obj.password, obj.id],
         (_, { rowsAffected }) => {
           if (rowsAffected > 0) resolve(rowsAffected);
           else reject("Erro ao atualizar o Usuário: id=" + id);
