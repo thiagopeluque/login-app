@@ -16,8 +16,8 @@ export default function Register() {
   // Recebemos os dados vindos da tela UsersScreens e armazenamos na variável "usuarios".
   const usuarios = route.params.usuario;
 
-  // Através da variável "usuarios" recebido acima, conseguimos preencher os campos do form.
-  // Com os campos preenchidos, podemos efetuar alterações nos dados dos usuários cadastrados
+  /* Através da variável "usuarios" recebido acima, conseguimos preencher os campos do form.
+  Com os campos preenchidos, podemos efetuar alterações nos dados dos usuários cadastrados */
   const loadValues = {
     id: usuarios.id,
     nome: usuarios.nome,
@@ -32,15 +32,15 @@ export default function Register() {
     password: usuarios.password,
   };
 
-  // Novamente declaramos as funções do React-Hook-Forms e passamos além delas, os valores
-  // inciais dos inputs. Sendo assim eles já aparecem preenchidos só necessitando alterar o necessário
+  /* Novamente declaramos as funções do React-Hook-Forms e passamos além delas, os valores
+  inciais dos inputs. Sendo assim eles já aparecem preenchidos só necessitando alterar o necessário */
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: loadValues,
   });
 
-  // Função para tratamento do Update dos dados. A função "handleUpdate" é chamado após clicar no
-  // botão ATUALIZAR no final do Form. Após a atualização, através do React-Navigation retornamos através
-  // tela de usuários cadastrados, já com a alteração aplicada.
+  /* Função para tratamento do Update dos dados. A função "handleUpdate" é chamado após clicar no
+  botão ATUALIZAR no final do Form. Após a atualização, através do React-Navigation retornamos através
+  tela de usuários cadastrados, já com a alteração aplicada. */
   const handleUpdate = async (data) => {
     User.update(data)
     .then(() => {

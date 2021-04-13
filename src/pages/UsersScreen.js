@@ -28,9 +28,9 @@ export default function Users() {
     User.all().then((resolve) => setUsers(resolve));
   };
 
-  // Função que trata o update dos dados dos Usuários
-  // Faz a busca pelo usuário clicado através do ID e retorna os dados e envia o objeto para
-  // outra Tela do App através do Route do React-Navigation
+  /* Função que trata o update dos dados dos Usuários
+  Faz a busca pelo usuário clicado através do ID e retorna os dados e envia o objeto para
+  outra Tela do App através do Route do React-Navigation */
   const handleUpdate = (data) => {
     User.findtoUpdate(data)
     .then((resolve) => {
@@ -38,8 +38,8 @@ export default function Users() {
     });
   };
 
-  // Função que trata a alteração do state de Busca de usuários "searchTerm" e seta o valor que
-  // será usado na busca para criar a listagem já filtrada e exibir na tela
+  /* Função que trata a alteração do state de Busca de usuários "searchTerm" e seta o valor que
+  será usado na busca para criar a listagem já filtrada e exibir na tela */
   const handleSearch = () => {
     User.findByName(searchTerm)
     .then((resolve) => {
@@ -48,8 +48,8 @@ export default function Users() {
     .catch((resolve)=>{alert(resolve)})
   };
   
-  // Alert de Exclusão de Usuário, caso deseje excluir 
-  // faz a chamada da função remove e deleta do Banco de Dados
+  /* Alert de Exclusão de Usuário, caso deseje excluir 
+  faz a chamada da função remove e deleta do Banco de Dados */
   const handleDelete = (data) => {
     Alert.alert(
       "Exclusão de Usuários",

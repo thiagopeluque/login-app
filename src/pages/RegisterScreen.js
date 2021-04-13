@@ -11,13 +11,13 @@ export default function Register() {
   // declaração do useNavigation para "andar" pelas telas do App
   const navigation = useNavigation();
 
-  // Usado o React-Hook-Forms.
-  // Declaração das funções do Hook, onde através delas fica mais fácil receber os dados digitados no Form,
-  // tratar os erros de digitação e utilização de Máscaras de preenchimento
+  /* Usado o React-Hook-Forms.
+  Declaração das funções do Hook, onde através delas fica mais fácil receber os dados digitados no Form,
+  tratar os erros de digitação e utilização de Máscaras de preenchimento */
   const { control, handleSubmit, formState: { errors } } = useForm();
 
-  // Função para tratar receber os dados do Form de Registro de Novos Usuário e enviar para o banco Inserir
-  // Após o sucesso da inclusão, retornamos para a tela de Usuários Cadastrados. Em caso de erro, recemos um Alert
+  /* Função para tratar receber os dados do Form de Registro de Novos Usuário e enviar para o banco Inserir
+  Após o sucesso da inclusão, retornamos para a tela de Usuários Cadastrados. Em caso de erro, recemos um Alert */
   const handleRegister = async (data) => {
 	User.create(data)
 	.then(() => {

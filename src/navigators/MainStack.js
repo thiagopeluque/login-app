@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const MainStack = createStackNavigator();
 
+// Importação das Telas para ser usada no Stack
 import LoginScreen from '../pages/LoginScreen';
 import UsersScreen from '../pages/UsersScreen';
 import RegisterScreen from '../pages/RegisterScreen';
@@ -10,6 +11,8 @@ import DetailsScreen from '../pages/DetailsScreen';
 
 export default () => {
    return (
+     
+    // Criação do Stack de Telas do React-Navigation
      <MainStack.Navigator>
        <MainStack.Screen
          name="Login"

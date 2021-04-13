@@ -12,15 +12,15 @@ export default function App() {
   // declaração do useNavigation para "andar" pelas telas do App
   const navigation = useNavigation();
   
-  // Usado o React-Hook-Forms.
-  // Declaração das funções do Hook, onde através delas fica mais fácil receber os dados digitados no Form,
-  // tratar os erros de digitação e utilização de Máscaras de preenchimento
+  /* Usado o React-Hook-Forms.
+  Declaração das funções do Hook, onde através delas fica mais fácil receber os dados digitados no Form,
+  tratar os erros de digitação e utilização de Máscaras de preenchimento */
   const { control, handleSubmit, formState: { errors }} = useForm();
 
-  // Função de verificação do Login. Recebe os dados do Form. (usuário e senha) e envia o objeto para o Banco
-  // efetuar a consulta.
-  // Caso exista, através do React-Navigation o usuário é direcionado para tela de Usuários.
-  // Caso não exista, É retornado um Alert do Android para o usuário
+  /* Função de verificação do Login. Recebe os dados do Form. (usuário e senha) e envia o objeto para o Banco
+  efetuar a consulta.
+  Caso exista, através do React-Navigation o usuário é direcionado para tela de Usuários.
+  Caso não exista, É retornado um Alert do Android para o usuário */
   const handleVerifyLogin = async (data) => {
     User.login(data)
       .then(() => {
