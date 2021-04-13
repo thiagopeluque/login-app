@@ -69,6 +69,7 @@ export default function Register() {
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
+              keyboardType="email-address"
               style={styles.textInput}
               onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
@@ -90,6 +91,7 @@ export default function Register() {
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
+              keyboardType="phone-pad"
               style={styles.textInput}
               onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
@@ -153,6 +155,7 @@ export default function Register() {
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
+              keyboardType="numeric"
               style={styles.textInput}
               onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
@@ -193,6 +196,7 @@ export default function Register() {
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
+              keyboardType="numeric"
               style={styles.textInput}
               onBlur={onBlur}
               onChangeText={(value) => onChange(value)}
